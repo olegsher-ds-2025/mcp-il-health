@@ -1,5 +1,7 @@
 # mcp-il-health
 
+<!-- mcp-name: io.github.olegsher-ds-2025/mcp-il-health -->
+
 Israeli Ministry of Health registries for AI agents: doctor licence verification, national nutrition database, health NGOs, medical-cannabis pharmacies — live from data.gov.il.
 
 **מאגרי משרד הבריאות: אימות רישיון רופא, מאגר התזונה הלאומי, ארגוני בריאות, קנביס רפואי**
@@ -28,21 +30,29 @@ government open data in plain language. No API key, no scraping — every call g
 
 ## Install
 
+No install needed with [uv](https://docs.astral.sh/uv/):
+
 ```bash
-pip install git+https://github.com/olegsher-ds-2025/mcp-il-health
+uvx mcp-il-health
 ```
 
 Claude Desktop / Claude Code (`.mcp.json`):
 
 ```json
-{ "mcpServers": { "il-health": { "command": "mcp-il-health" } } }
+{ "mcpServers": { "il-health": { "command": "uvx", "args": ["mcp-il-health"] } } }
 ```
+
+Or `pip install mcp-il-health`, or from source: `pip install git+https://github.com/olegsher-ds-2025/mcp-il-health`.
+
+Also listed in the official MCP Registry as `io.github.olegsher-ds-2025/mcp-il-health`.
 
 Run over HTTP (for remote hosting):
 
 ```bash
 MCP_TRANSPORT=http PORT=8000 mcp-il-health   # → http://localhost:8000/mcp
 ```
+
+Docker: `docker build -t mcp-il-health . && docker run -p 8000:8000 mcp-il-health`.
 
 Prefect Horizon entrypoint: `server.py:mcp`.
 

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.olegsher-ds-2025/mcp-il-health",
+  "title": "Israel Health Registries",
+  "description": "Israeli Ministry of Health registries for AI agents: doctor licence verification, national nutrition",
+  "repository": {
+    "url": "https://github.com/olegsher-ds-2025/mcp-il-health",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mcp-il-health",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
