@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "il-health": { "command": "mcp-il-health" }
+  }
+}
