@@ -12,3 +12,4 @@
 ## Facts
 - data.gov.il CKAN reachable from Claude cloud workspace and cloud hosts (unlike cbs.gov.il)
 - Registry text encodes `"` as `~` — cleaned in ckan.clean_value
+- GitHub Actions jobs specify only the GITHUB_TOKEN permissions they need; the test job requires contents: read.
