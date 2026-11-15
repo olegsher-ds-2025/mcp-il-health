@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mcp-il-health"
-version = "0.1.0"
+version = "0.1.1"
 description = "Israeli Ministry of Health registries for AI agents: doctor licence verification, national nutrition database, health NGOs, medical-cannabis pharmacies — live from data.gov.il"
 readme = "README.md"
 requires-python = ">=3.11"

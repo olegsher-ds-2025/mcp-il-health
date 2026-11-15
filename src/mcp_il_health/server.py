@@ -8,6 +8,7 @@ import os
 
 from fastmcp import FastMCP
 
+from . import __version__
 from .ckan import datastore_search, meta
 
 R_DOCTORS = "9c64c522-bbc2-48fe-96fb-3b2a8626f59e"  # מאגר רישיונות רופאים
@@ -36,6 +37,7 @@ NUTRIENTS = {
 
 mcp = FastMCP(
     "mcp-il-health",
+    version=__version__,
     instructions=(
         "Israeli Ministry of Health open registries. verify_doctor checks a physician's licence and specialty; "
         "food_nutrition returns nutrients per 100 g from the national database (search in Hebrew). "
@@ -98,8 +100,12 @@ def _best_match(query: str, records: list[dict]) -> dict | None:
 async def food_nutrition(food: str, limit: int = 10) -> dict:
     """Nutrients per 100 g for foods and Israeli dishes from the national nutrition database
     (search in Hebrew, e.g. "חומוס", "שקשוקה", "פיתה")."""
-    res = await datastore_search(R_NUTRITION, q=food, limit=max(1, min(limit, 50)))
-    return {"total": res["total"], "foods": [_food(r) for r in res["records"]], **meta(DS["nutrition"])}
+    lim = max(1, min(limit, 50))
+    res = await datastore_search(R_NUTRITION, q=food, limit=max(lim, 30))
+    q = food.strip()
+    ranked = sorted(res["records"], key=lambda r: (not (r.get("shmmitzrach") or "").startswith(q),
+                                                   len(r.get("shmmitzrach") or "")))
+    return {"total": res["total"], "foods": [_food(r) for r in ranked[:lim]], **meta(DS["nutrition"])}
 
 
 @mcp.tool
